@@ -26,8 +26,15 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
     { "pause","player.buff(Feign Death)" }, -- Pause rotation for Feign Death
 	
     -- Interrupts
-    { "Counter Shot", "target.interruptAt(85)", "modifier.interrupts" }, -- Counter Shot at 15% cast time left
-	{ "Tranquilizing Shot", { "target.dispellable(Tranquilizing Shot)", "!target.charmed", "!target.state.charm", "!target.debuff(Touch of Y'Shaarj)", "!target.debuff(Empowered Touch of Y'Shaarj)", "!target.buff(Touch of Y'Shaarj)", "!target.buff(Empowered Touch of Y'Shaarj)" }, "target" },
+    { "Counter Shot", {
+		"target.interruptAt(50)",
+		"modifier.interrupts",
+	},"target" }, -- Counter Shot at 15% cast time left
+	{ "Tranquilizing Shot", {
+		"target.dispellable(Tranquilizing Shot)",
+		"!target.charmed",
+		"!target.state.charm",
+	}, "target" },
       
     -- Defensive Cooldowns
 	{ "#115156", "player.state.fear" }, -- Use PvP Trinket if player is feared.
@@ -45,7 +52,10 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
     { "Binding Shot", "modifier.lalt", "mouse.ground" }, -- Binding Shot on mouseover if left alt is pressed.
 
 	-- Crowd Control your focus target!
-	{ "Freezing Trap", { "focus.exists", "focus.debuff(Freezing Trap).duration < 10" }, "focus.ground" },
+	{ "Freezing Trap", {
+		"focus.exists",
+		"focus.debuff(Freezing Trap).duration < 10",
+	}, "focus.ground" },
 	
     -- Multi-target Rotation
     {{            
