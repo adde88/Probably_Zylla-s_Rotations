@@ -20,8 +20,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
 	-- Buffs!
 	{ "Lone Wolf: Quickness of the Dragonhawk", "!player.buff(Lone Wolf: Quickness of the Dragonhawk)" }, -- Make sure that Lone Wolf: Multistrike is up!
 	{ "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated.
-	{ "Aspect of the Cheetah", "!player.buff(Aspect of the Cheetah)", "player.moving" }, -- Use Aspect of the Cheetah if player is moving!
-		{ "/cancelaura Aspect of the Cheetah", "!player.moving" }, -- Cancel Aspect of the Cheetah if player is NOT moving!
 	
     -- Pause Rotation
     { "pause", "modifier.rshift" }, -- Pause rotation if right shift is pressed.
@@ -53,7 +51,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
     {{            
         -- If there are more than 5 units/enemies.
         {{
-			{ "Explosive Trap", { "target.ttd >= 20", "target.area(10).enemies >  2" }, "ground" }, -- Use Explosive Trap when possible.
             { "Black Arrow", "!target.debuff(Black Arrow)" }, -- Black Arrow
             { "Explosive Shot", "player.buff(Lock and Load)" }, -- Explosive Shot when Lock and Load is up.
             { "A Murder of Crows"}, -- Use A Murder of Crows.
@@ -65,7 +62,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
             }, { (function() return UnitsAroundUnit('target', 8) >= 5 end) },
         },
         -- If there are between 2-4 units/enemies.
-			{ "Explosive Trap", { "target.ttd >= 20", "target.area(10).enemies >  2" }, "ground" }, -- Use Explosive Trap when possible.
 			{ "Black Arrow", "!target.debuff(Black Arrow)" }, -- Black Arrow
             { "Explosive Shot", "player.buff(Lock and Load)" }, -- Explosive Shot when Lock and Load is up.
             { "A Murder of Crows"}, -- Use A Murder of Crows.
@@ -77,8 +73,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
 	} , "modifier.multitarget" },
     -- Single Target Rotation!
     {{
-		{ "Explosive Trap", "ground" }, -- Use Explosive Trap when possible.
-		{ "Binding Shot", "target.moving", "ground" },
 		{ "Black Arrow", "!target.debuff(Black Arrow)" }, -- Black Arrow
 		{ "Explosive Shot"}, -- Explosive Shot.
 		{ "A Murder of Crows"}, -- Use A Murder of Crows.
