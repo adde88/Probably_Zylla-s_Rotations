@@ -1,0 +1,12 @@
+## Interface: 60000
+## Title: Probably - Zylla's Rotations
+## Notes: ProbablyEngine Custom Rotation
+## Dependencies: Probably
+
+#assassination.lua
+survival.lua
+#retribution.lua
+#fire.lua
+#protection.lua
+#frost.lua
+#blood.lua
