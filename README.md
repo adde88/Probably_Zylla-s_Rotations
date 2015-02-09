@@ -1,4 +1,4 @@
-Zylla's Survival Hunter Rotation v1.0a
+Zylla's Rotations v1.1a
 
 This is a custom addon for World of Warcraft, that depends on the ProbablyEngine addon.
 ProbablyEngine is a "rotation bot" written in LUA, which this addon also is.
@@ -15,6 +15,8 @@ You have been warned!
 6. If everything is OK. ProbablyEngine AND this addon should have loaded without problems.
 7. Right click on the Toggle button, which is part of the ProbablyEngine addon, and load Zylla's Rotation
 8. Start DPS'ing!
+
+Currently only Survival Hunter rotation is supported. But many more will come.
 
 Press RIGHT SHIFT to Pause the rotation
 Explosive Trap on mouseover when LEFT CTRL is pressed.
