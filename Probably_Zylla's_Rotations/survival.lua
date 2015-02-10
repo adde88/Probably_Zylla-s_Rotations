@@ -62,12 +62,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
             "modifier.cooldowns"
       }}, -- Use Dire Beast if player focus is lower than 15.
       
-      -- Buffs!
-      { "Lone Wolf: Quickness of the Dragonhawk", {
-            "!player.buffs.multistrike",
-            "!toggle.pet",
-      }}, -- Make sure that Lone Wolf: Multistrike is up if pet is off! (Might be bugged let me know)
-      { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated.
+      { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated in combat.
       
       -- Pause Rotation
       { "/stopattack\n/petfollow", "modifier.rshift" }, -- Pause rotation if right shift is pressed.
@@ -117,7 +112,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
       }, "target" },
       
       { "#trinket1", "modifier.cooldowns","toggle.pvp" }, -- Set PvP Conquest agility use trinket as a cooldown.
-      
       { "#trinket2", { "player.state.fear", "toggle.pvp" }, "player" }, -- Use PvP Trinket if player is feared.
       { "#trinket2", { "player.state.stun", "toggle.pvp" }, "player" },    -- Use PvP Trinket if player is stunned.
       { "#trinket2", { "player.state.root", "toggle.pvp" }, "player" },    -- Use PvP Trinket if player is rooted.
@@ -188,13 +182,14 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
       { "pause","player.buff(Feign Death)" }, -- Pause for Feign Death 
       { "Auto Shot", "modifier.lshift", "target" }, -- Press Left Shift while out of combat to Auto Shot your current target!
       { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated while out of combat.
+ --[[------------------------------------------------------------------------------------------------
       { "#Oralius' Whispering Crystal", "!player.buff(Whispers of Insanity)" }, -- Make sure buff crystal is up.
       { "Lone Wolf: Quickness of the Dragonhawk", {
             "!player.buffs.multistrike",
             "!toggle.pet",
             "player.spell(Lone Wolf: Quickness of the Dragonhawk).exists",
       }}, -- Make sure that Lone Wolf: Multistrike is up if pet is off! (Might be bugged let me know)
-      
+      --------------------------------------------------------------------------------------------------]]
       -- AutoTarget while OOC
       { "/targetenemy [noexists]", {
             "toggle.autotarget",
@@ -212,7 +207,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
          'pvp',
          'Interface\\Icons\\achievement_featsofstrength_gladiator_06',
          'PvP Mode.',
-         'Automatically use the PvP Trinkets. Put the use-effect trinket as first, and the freedom trinket as second!'
+         'PvP Mode. Auto use freedom trinket, Use Camouflage if you have glyph, Concussive Shot. And others!'
       )
       ProbablyEngine.toggle.create(
          'pet',
@@ -227,12 +222,3 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
          'Toggle on to use the builtin auto targetting function.'
       )
 end)
-
-
-
-
-
-
-
-
-
