@@ -17,8 +17,14 @@
 --
 -- Recommended spec: LONE WOLF, BARRAGE,AMoC,TotH,Iron Hawk,Binding Shot,CTHC! MOAR DPS!
 --
-ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1.1a", {
-      
+ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1.2a", {
+
+      { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated in combat.
+      { "#Greater Draenic Agility Flask", {
+            "!player.buff(Greater Draenic Agility Flask)",
+            "toggle.flasks",
+      }, "player" }, -- Check for Greater Draenic Agility Flask in combat.
+
       -- AutoTarget
       { "/targetenemy [noexists]", {
             "toggle.autotarget",
@@ -51,6 +57,10 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
       { "Master's Call", "toggle.pet", "player.state.snare" },
       
       -- Cooldowns
+      { "#Draenic Agility Potion", {
+            "modifier.cooldowns",
+            "toggle.flasks",
+      }, "player" }, -- Use Draenic Agility Potion with cooldowns
       { "#trinket1", "modifier.cooldowns" }, -- Sets the first trinket as a cooldown. In case it has a use effect.
       { "Stampede", {
             "player.spell(Stampede).exists",
@@ -61,8 +71,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
             "player.focus < 15",
             "modifier.cooldowns"
       }}, -- Use Dire Beast if player focus is lower than 15.
-      
-      { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated in combat.
+
       
       -- Pause Rotation
       { "/stopattack\n/petfollow", "modifier.rshift" }, -- Pause rotation if right shift is pressed.
@@ -98,6 +107,20 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
             "modifier.interrupts",
       }, "target" }, -- Intimidation at 50% cast time left, if Counter Shot is on cooldown.
       
+      -- Racials
+      { "Stoneform", "player.health < 65" },
+      { "Every Man for Himself", "player.state.charm" },
+      { "Every Man for Himself", "player.state.fear" },
+      { "Every Man for Himself", "player.state.incapacitate" },
+      { "Every Man for Himself", "player.state.sleep" },
+      { "Every Man for Himself", "player.state.stun" },
+      { "Gift of the Naaru", "player.health < 40", "player" },
+      { "Escape Artist", "player.state.root" },
+      { "Escape Artist", "player.state.snare" },
+      { "Will of the Forsaken", "player.state.fear" },
+      { "Will of the Forsaken", "player.state.charm" },
+      { "Will of the Forsaken", "player.state.sleep" },
+
       -- PvP Mode
       { "Camouflage", {
             "toggle.pvp",
@@ -105,12 +128,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
             "!player.buff(Camouflage)",
             "!player.debuff(Orb of Power)",
       }},
-      { "Concussive Shot", {
-            "target.moving",
-            "!target.immune.snare",
-            "toggle.pvp",
-      }, "target" },
-      
+
       { "#trinket1", "modifier.cooldowns","toggle.pvp" }, -- Set PvP Conquest agility use trinket as a cooldown.
       { "#trinket2", { "player.state.fear", "toggle.pvp" }, "player" }, -- Use PvP Trinket if player is feared.
       { "#trinket2", { "player.state.stun", "toggle.pvp" }, "player" },    -- Use PvP Trinket if player is stunned.
@@ -124,17 +142,20 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
       
       -- Defensive Cooldowns
       { "Deterrence", "player.health < 30" }, -- Deterrence if HP is under 30%
-      { "Gift of the Naaru", "player.health < 40" }, -- Gift of the Naaru if HP is under 40%
       { "#5512", "player.health < 45" }, -- Healthstone if HP is under 45%
       { "Exhilaration", "player.health < 78" }, -- Exhilaration if HP is under 78%
-      { "Binding Shot", "player.spell(Binding Shot).exists", "target.range <= 15", "ground"}, -- Auto binding shot if closer than 15 yards.
-      
+      { "Binding Shot", {
+            "toggle.bs",
+            "player.spell(Binding Shot).exists",
+            "target.range <= 15",
+      }, "target.ground" }, -- Auto binding shot if closer than 15 yards. (Might not work! Just testing it out!)
+    
       -- Trap at your current mouseover with keybinds
       { "Explosive Trap", "modifier.lcontrol", "mouse.ground" }, -- Explosive Trap on ground if left control is pressed.
       { "Ice Trap", "modifier.lshift", "mouse.ground" }, -- Ice Trap on mouseover if left shift is pressed.
+      { "Snake Trap", "player.spell(Snake Trap).exists", "modifier.lshift", "mouse.ground" }, -- Ice Trap on mouseover if left shift is pressed.
       { "Freezing Trap", "modifier.rcontrol", "mouse.ground" }, -- Freezing Trap on mouseover if right control is pressed.
       { "Binding Shot", "modifier.lalt", "mouse.ground" }, -- Binding Shot on mouseover if left alt is pressed.
-      
       
       -- Multi-target Rotation
       {{            
@@ -169,7 +190,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
             { "Black Arrow", "!target.debuff(Black Arrow)" }, -- Black Arrow
             { "Explosive Shot"}, -- Explosive Shot.
             { "A Murder of Crows", "player.spell(A Murder of Crows).exists" }, -- Use A Murder of Crows.
-            { "Glaive Toss", "player.spell(Glaive Toss).exists" }, -- Glaive Toss!
             { "Arcane Shot", "player.buff(Thrill of the Hunt)" }, -- Arcane Shot if Thrill of the Hunt is up.
             { "Arcane Shot", "!target.debuff(Serpent Sting)" }, -- Arcane shot Shot to keep Serpent Sting up.
             { "Cobra Shot", "player.focus < 60" }, -- Cobra Shot if player focus is lower than 60.
@@ -177,19 +197,15 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
       } , "!modifier.multitarget" },
    },
    
-   -- Out of Combat
+   -- Out of Combat Stuff!
    {
       { "pause","player.buff(Feign Death)" }, -- Pause for Feign Death 
       { "Auto Shot", "modifier.lshift", "target" }, -- Press Left Shift while out of combat to Auto Shot your current target!
       { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated while out of combat.
- --[[------------------------------------------------------------------------------------------------
-      { "#Oralius' Whispering Crystal", "!player.buff(Whispers of Insanity)" }, -- Make sure buff crystal is up.
-      { "Lone Wolf: Quickness of the Dragonhawk", {
-            "!player.buffs.multistrike",
-            "!toggle.pet",
-            "player.spell(Lone Wolf: Quickness of the Dragonhawk).exists",
-      }}, -- Make sure that Lone Wolf: Multistrike is up if pet is off! (Might be bugged let me know)
-      --------------------------------------------------------------------------------------------------]]
+      { "#Greater Draenic Agility Flask", {
+            "!player.buff(Greater Draenic Agility Flask)",
+            "toggle.flasks",
+      }, "player" }, -- Check for Greater Draenic Agility Flask out of combat.
       -- AutoTarget while OOC
       { "/targetenemy [noexists]", {
             "toggle.autotarget",
@@ -207,7 +223,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
          'pvp',
          'Interface\\Icons\\achievement_featsofstrength_gladiator_06',
          'PvP Mode.',
-         'PvP Mode. Auto use freedom trinket, Use Camouflage if you have glyph, Concussive Shot. And others!'
+         'PvP Mode. Auto uses freedom trinket, Uses Camouflage if you have the glyph. And others!'
       )
       ProbablyEngine.toggle.create(
          'pet',
@@ -219,6 +235,20 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
          'autotarget',
          'Interface\\Icons\\inv_misc_spyglass_02',
          'Auto-Target.',
-         'Toggle on to use the builtin auto targetting function.'
+         'Toggle on/off auto targeting.'
+      )
+      ProbablyEngine.toggle.create(
+         'bs',
+         'Interface\\Icons\\spell_shaman_bindelemental',
+         'Auto Binding Shot.',
+         'Toggle on to automatically use Binding Shot on the target location, if the enemy gets closer than 15 yards.'
+      )
+      ProbablyEngine.toggle.create(
+         'flasks',
+         'Interface\\Icons\\trade_alchemy_dpotion_c12',
+         'Use agility flask, and potion.',
+         'Toggle on to automatically use Agility flask, and the Potion. Make sure you have them!'
       )
 end)
+
+      
