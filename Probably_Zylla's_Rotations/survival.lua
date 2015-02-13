@@ -1,9 +1,9 @@
--- Zylla's Survival Hunter Rotation. v1.0a
+-- Zylla's Survival Hunter Rotation. v1.2a
 --
 -- For use with Probably Engine. A World of Warcraft Rotation Bot.
 -- This "addon" uses protected LUA functions, and will need a LUA unlocker to be used.
 --
--- Rotation is currently in ALPHA STAGE.
+-- Rotation are currently in ALPHA STAGE.
 -- I'm a new developer, who is working on several rotations, and different LUA scripts.
 -- As i am new to the LUA scene, and i'm still learning, there will most likely exist bugs, and things that can be improved upon.
 -- That's where YOU come in the picture!
@@ -17,7 +17,7 @@
 --
 -- Recommended spec: LONE WOLF, BARRAGE,AMoC,TotH,Iron Hawk,Binding Shot,CTHC! MOAR DPS!
 --
-ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1.2a", {
+ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v1.2a", {
 
       { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated in combat.
       { "#Greater Draenic Agility Flask", {
@@ -250,5 +250,3 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation 1
          'Toggle on to automatically use Agility flask, and the Potion. Make sure you have them!'
       )
 end)
-
-      

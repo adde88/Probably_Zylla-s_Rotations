@@ -3,7 +3,7 @@
 ## Notes: ProbablyEngine Custom Rotation
 ## Dependencies: Probably
 
-#assassination.lua
+assassination.lua
 survival.lua
 #retribution.lua
 #fire.lua
