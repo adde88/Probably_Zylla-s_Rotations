@@ -1,9 +1,9 @@
--- Zylla's Survival Hunter Rotation. v1.2a
+-- Zylla's Survival Hunter Rotation. v1.3a
 --
 -- For use with Probably Engine. A World of Warcraft Rotation Bot.
 -- This "addon" uses protected LUA functions, and will need a LUA unlocker to be used.
 --
--- Rotation are currently in ALPHA STAGE.
+-- Rotation is currently in ALPHA STAGE.
 -- I'm a new developer, who is working on several rotations, and different LUA scripts.
 -- As i am new to the LUA scene, and i'm still learning, there will most likely exist bugs, and things that can be improved upon.
 -- That's where YOU come in the picture!
@@ -17,13 +17,14 @@
 --
 -- Recommended spec: LONE WOLF, BARRAGE,AMoC,TotH,Iron Hawk,Binding Shot,CTHC! MOAR DPS!
 --
-ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v1.2a", {
+ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v1.3a", {
 
       { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated in combat.
       { "#Greater Draenic Agility Flask", {
+			"!player.buff(Whispers of Insanity",
             "!player.buff(Greater Draenic Agility Flask)",
             "toggle.flasks",
-      }, "player" }, -- Check for Greater Draenic Agility Flask in combat.
+      }}, -- Check for Greater Draenic Agility Flask in combat.
 
       -- AutoTarget
       { "/targetenemy [noexists]", {
@@ -60,7 +61,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
       { "#Draenic Agility Potion", {
             "modifier.cooldowns",
             "toggle.flasks",
-      }, "player" }, -- Use Draenic Agility Potion with cooldowns
+      }}, -- Use Draenic Agility Potion with cooldowns
       { "#trinket1", "modifier.cooldowns" }, -- Sets the first trinket as a cooldown. In case it has a use effect.
       { "Stampede", {
             "player.spell(Stampede).exists",
@@ -72,7 +73,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
             "modifier.cooldowns"
       }}, -- Use Dire Beast if player focus is lower than 15.
 
-      
       -- Pause Rotation
       { "/stopattack\n/petfollow", "modifier.rshift" }, -- Pause rotation if right shift is pressed.
       { "/stopattack\n/petfollow","player.buff(Feign Death)" }, -- Pause rotation for Feign Death
@@ -111,7 +111,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
       { "Stoneform", "player.health < 65" },
       { "Every Man for Himself", "player.state.charm" },
       { "Every Man for Himself", "player.state.fear" },
-      { "Every Man for Himself", "player.state.incapacitate" },
+      { "Every Man for Himself", "player.state.incapacitated" },
       { "Every Man for Himself", "player.state.sleep" },
       { "Every Man for Himself", "player.state.stun" },
       { "Gift of the Naaru", "player.health < 40", "player" },
@@ -142,38 +142,28 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
       
       -- Defensive Cooldowns
       { "Deterrence", "player.health < 30" }, -- Deterrence if HP is under 30%
-      { "#5512", "player.health < 45" }, -- Healthstone if HP is under 45%
+      { "#Healthstone", "player.health < 45" }, -- Healthstone if HP is under 45%
       { "Exhilaration", "player.health < 78" }, -- Exhilaration if HP is under 78%
       { "Binding Shot", {
             "toggle.bs",
             "player.spell(Binding Shot).exists",
             "target.range <= 15",
       }, "target.ground" }, -- Auto binding shot if closer than 15 yards. (Might not work! Just testing it out!)
+      { "Explosive Trap", {
+            "toggle.bs",
+            "target.range <= 36",
+      }, "target.ground" }, -- Auto Explosive Trap if closer than 15 yards. (Might not work! Just testing it out!)
     
-      -- Trap at your current mouseover with keybinds
+      -- Traps at your current mouseover with keybinds
       { "Explosive Trap", "modifier.lcontrol", "mouse.ground" }, -- Explosive Trap on ground if left control is pressed.
       { "Ice Trap", "modifier.lshift", "mouse.ground" }, -- Ice Trap on mouseover if left shift is pressed.
       { "Snake Trap", "player.spell(Snake Trap).exists", "modifier.lshift", "mouse.ground" }, -- Ice Trap on mouseover if left shift is pressed.
       { "Freezing Trap", "modifier.rcontrol", "mouse.ground" }, -- Freezing Trap on mouseover if right control is pressed.
       { "Binding Shot", "modifier.lalt", "mouse.ground" }, -- Binding Shot on mouseover if left alt is pressed.
       
-      -- Multi-target Rotation
-      {{            
-            -- If there are more than 5 units/enemies.
-            {{
-                  { "Black Arrow", "!target.debuff(Black Arrow)" }, -- Black Arrow
-                  { "Explosive Shot", "player.buff(Lock and Load)" }, -- Explosive Shot when Lock and Load is up.
-                  { "A Murder of Crows", "player.spell(A Murder of Crows).exists" }, -- Use A Murder of Crows.                  
-                  { "Barrage", "player.spell(Barrage).exists" }, -- Barrage!
-                  { "Glaive Toss", "player.spell(Glaive Toss).exists" }, -- Glaive Toss!
-                  { "Multi-Shot", "player.buff(Thrill of the Hunt)" }, --Multi-Shot if Thrill of the Hunt is up.
-                  { "Multi-Shot", "!target.debuff(Serpent Sting)" }, -- Multi-shot Shot to keep Serpent Sting up.
-                  { "Multi-Shot", "player.focus > 50" }, -- Multi-Shot focus dump
-                  { "Cobra Shot", "player.focus < 60" }, -- Cobra Shot.
-                  { "Focusing Shot", "player.focus < 50" }, -- Focusing Shot if under 50 focus.
-               }, { (function() return UnitsAroundUnit('target', 8) >= 5 end) },
-            },
-            -- If there are between 2-4 units/enemies.
+      -- Rotations
+      {{      
+            -- Multi-target Rotation
             { "Black Arrow", "!target.debuff(Black Arrow)" }, -- Black Arrow
             { "Explosive Shot" }, -- Explosive Shot.
             { "A Murder of Crows", "player.spell(A Murder of Crows).exists" }, -- Use A Murder of Crows.
@@ -185,6 +175,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
             { "Cobra Shot", "player.focus < 60" }, -- Cobra Shot.
             { "Focusing Shot", "player.focus < 50" }, -- Focusing Shot if under 50 focus.
       } , "modifier.multitarget" },
+	  
       -- Single Target Rotation!
       {{
             { "Black Arrow", "!target.debuff(Black Arrow)" }, -- Black Arrow
@@ -202,12 +193,14 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
       { "pause","player.buff(Feign Death)" }, -- Pause for Feign Death 
       { "Auto Shot", "modifier.lshift", "target" }, -- Press Left Shift while out of combat to Auto Shot your current target!
       { "Trap Launcher", "!player.buff(Trap Launcher)" }, -- Make sure Trap Launcher is activated while out of combat.
+	  
       { "#Greater Draenic Agility Flask", {
+			"!player.buff(Whispers of Insanity",
             "!player.buff(Greater Draenic Agility Flask)",
             "toggle.flasks",
-      }, "player" }, -- Check for Greater Draenic Agility Flask out of combat.
-      -- AutoTarget while OOC
-      { "/targetenemy [noexists]", {
+      }}, -- Check for Greater Draenic Agility Flask out of combat.
+	 	  
+      { "/targetenemy [noexists]", { -- AutoTarget while OOC
             "toggle.autotarget",
             "!target.exists",
       }},
@@ -241,7 +234,7 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
          'bs',
          'Interface\\Icons\\spell_shaman_bindelemental',
          'Auto Binding Shot.',
-         'Toggle on to automatically use Binding Shot on the target location, if the enemy gets closer than 15 yards.'
+         'Toggle on to automatically use Binding Shot, and Explosive Trap on the target location, if the enemy gets closer than 15/35 yards.'
       )
       ProbablyEngine.toggle.create(
          'flasks',
