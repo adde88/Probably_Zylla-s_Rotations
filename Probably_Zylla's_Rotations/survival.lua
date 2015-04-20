@@ -128,8 +128,6 @@ ProbablyEngine.rotation.register_custom(255, "Zylla's Survival Hunter Rotation v
             "!player.buff(Camouflage)",
             "!player.debuff(Orb of Power)",
       }},
-
-      { "#trinket1", "modifier.cooldowns","toggle.pvp" }, -- Set PvP Conquest agility use trinket as a cooldown.
       { "#trinket2", { "player.state.fear", "toggle.pvp" }, "player" }, -- Use PvP Trinket if player is feared.
       { "#trinket2", { "player.state.stun", "toggle.pvp" }, "player" },    -- Use PvP Trinket if player is stunned.
       { "#trinket2", { "player.state.root", "toggle.pvp" }, "player" },    -- Use PvP Trinket if player is rooted.
