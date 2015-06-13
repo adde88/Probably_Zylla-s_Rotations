@@ -18,61 +18,61 @@
 -- Recommended spec: LONE WOLF, BARRAGE,AMoC,TotH,Iron Hawk,Binding Shot,CTHC! MOAR DPS!
 --
 ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96Hunter Rotation v1.9a|r]", {
-
-	  -- Misdirection on Focus if Toggled ON
-	  { "Misdirection", {
-			"focus.exists",
-			"toggle.misdirect",
-	  }, "focus" },
+      
+      -- Misdirection on Focus if Toggled ON
+      { "Misdirection", {
+            "focus.exists",
+            "toggle.misdirect",
+      }, "focus" },
       { "Trap Launcher", "!player.buff(Trap Launcher)" },
-	  {{
-		{ "#Hyper Augment Rune", "!player.buff(Hyper Augmentation)" },
-		{ "#Greater Draenic Agility Flask", {
-			"!player.buff(Whispers of Insanity",
-			"!player.buff(Greater Draenic Agility Flask)",
-		}},
-	  }, "toggle.flasks", "player" },
-
+      {{
+            { "#Hyper Augment Rune", "!player.buff(Hyper Augmentation)" },
+            { "#Greater Draenic Agility Flask", {
+                  "!player.buff(Whispers of Insanity",
+                  "!player.buff(Greater Draenic Agility Flask)",
+            }},
+      }, "toggle.flasks", "player" },
+      
       -- Auto Target if toggled ON
-	  {{
-		{ "/targetenemy [noexists]" },
-		{ "/targetenemy [dead]", "target.dead" },
+      {{
+            { "/targetenemy [noexists]" },
+            { "/targetenemy [dead]", "target.dead" },
       }, "toggle.autotarget", "target.exists" },
-	  
+      
       -- Pet stuff. I know it sucks but hey...
-	  {{
-		{ "Heart of the Phoenix", {
-			"pet.dead",
-		}},
-		{ "Revive Pet", {
-			"pet.dead",     
-		}},
-		{ "Mend Pet", { -- Mend Pet
-			"pet.health <= 75",
-			"pet.exists",
-			"!pet.dead",
-			"!pet.buff(Mend Pet)",
-		}},
-		{ "Master's Call", "player.state.stun" },
-		{ "Master's Call", "player.state.root" },
-		{ "Master's Call", "player.state.snare" },
+      {{
+            { "Heart of the Phoenix", {
+                  "pet.dead",
+            }},
+            { "Revive Pet", {
+                  "pet.dead",     
+            }},
+            { "Mend Pet", { -- Mend Pet
+                  "pet.health <= 75",
+                  "pet.exists",
+                  "!pet.dead",
+                  "!pet.buff(Mend Pet)",
+            }},
+            { "Master's Call", "player.state.stun" },
+            { "Master's Call", "player.state.root" },
+            { "Master's Call", "player.state.snare" },
       }, "toggle.pet" },
-	  
+      
       -- Cooldowns
-	  {{
-		{ "#Draenic Agility Potion", {
-			"toggle.flasks",
-		}, "player" },
-		{ "#trinket1", "modifier.cooldowns" },
-		{ "Stampede", {
-			"talent(5,3)",
-		}},
-		{ "Dire Beast", {
-			"talent(4,2)",
-			"player.focus < 15",
-		}},
-	  }, "modifier.cooldowns" },
-
+      {{
+            { "#Draenic Agility Potion", {
+                  "toggle.flasks",
+            }, "player" },
+            { "#trinket1", "modifier.cooldowns" },
+            { "Stampede", {
+                  "talent(5,3)",
+            }},
+            { "Dire Beast", {
+                  "talent(4,2)",
+                  "player.focus < 15",
+            }},
+      }, "modifier.cooldowns" },
+      
       -- Pause Rotation
       { "/stopattack\n/petfollow", "modifier.rshift" }, -- Pause rotation if right shift is pressed.
       { "/stopattack\n/petfollow","player.buff(Feign Death)" }, -- Pause rotation for Feign Death
@@ -87,7 +87,7 @@ ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96H
       }, "target" },
       { "Tranquilizing Shot", {
             "target.dispellable(Tranquilizing Shot)",
-		    "!target.cc",
+            "!target.cc",
       }, "target" },
       { "Wyvern Sting", {
             "talent(2,2)",
@@ -104,30 +104,30 @@ ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96H
       
       -- Racial traits.
       {{
-		{ "Every Man for Himself", "player.state.fear" },
-		{ "Every Man for Himself", "player.state.stun" },
-		{ "Every Man for Himself", "player.state.root" },
-		{ "Every Man for Himself", "player.state.horror" },
-		{ "Every Man for Himself", "player.state.charm" },
-		{ "Every Man for Himself", "player.state.sleep" },
-		{ "Every Man for Himself", "player.state.incapacitated" },
-		{ "Every Man for Himself", "player.state.disorient" },
-		{ "Every Man for Himself", "player.state.snare" },
-	  }, "player.spell(Every Man for Himself).exists", "player" },
-	  { "Stoneform", "player.spell(Stoneform).exists", "player.health <= 65" },
+            { "Every Man for Himself", "player.state.fear" },
+            { "Every Man for Himself", "player.state.stun" },
+            { "Every Man for Himself", "player.state.root" },
+            { "Every Man for Himself", "player.state.horror" },
+            { "Every Man for Himself", "player.state.charm" },
+            { "Every Man for Himself", "player.state.sleep" },
+            { "Every Man for Himself", "player.state.incapacitated" },
+            { "Every Man for Himself", "player.state.disorient" },
+            { "Every Man for Himself", "player.state.snare" },
+      }, "player.spell(Every Man for Himself).exists", "player" },
+      { "Stoneform", "player.spell(Stoneform).exists", "player.health <= 65" },
       { "Gift of the Naaru", "player.spell(Gift of the Naaru).exists", "player.health < 40", "player" },
       { "Will of the Forsaken", "player.spell(Will of the Forsaken).exists", "player.state.fear" },
       { "Will of the Forsaken", "player.spell(Will of the Forsaken).exists", "player.state.charm" },
       { "Will of the Forsaken", "player.spell(Will of the Forsaken).exists", "player.state.sleep" },
-	  { "Arcane Torrent", {
+      { "Arcane Torrent", {
             "target.interruptAt(50)",
-			"player.spell(Counter Shot).cooldown",
+            "player.spell(Counter Shot).cooldown",
             "modifier.interrupts",
       }, "target" },
-	  { "Blood Fury", "player.spell(Blood Fury).exists", "modifier.cooldowns" },
-	  { "Berserking", "player.spell(Berserking).exists", "modifier.cooldowns" },
-	  { "Rocket Barrage", "target.range <= 28", "player.spell(Rocket Barrage).exists", "modifier.cooldowns" },
-
+      { "Blood Fury", "player.spell(Blood Fury).exists", "modifier.cooldowns" },
+      { "Berserking", "player.spell(Berserking).exists", "modifier.cooldowns" },
+      { "Rocket Barrage", "target.range <= 28", "player.spell(Rocket Barrage).exists", "modifier.cooldowns" },
+      
       -- Camouflage / PvP Mode!
       { "Camouflage", {
             "toggle.pvp",
@@ -135,18 +135,18 @@ ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96H
             "!player.buff(Camouflage)",
             "!player.debuff(Orb of Power)",
       }},
-	  {{ -- PvP Trinket
-		{ "#trinket2", "player.state.fear" }, -- Fear.
-		{ "#trinket2", "player.state.stun" },    -- Stun.
-		{ "#trinket2", "player.state.root" },    -- Root.
-		{ "#trinket2", "player.state.horror" },    -- Horrify.
-		{ "#trinket2", "player.state.charm" },    -- Charm.
-		{ "#trinket2", "player.state.sleep" },    -- Sleep.
-		{ "#trinket2", "player.state.incapacitated" },    -- Incapacitation.
-		{ "#trinket2", "player.state.disorient" },    -- Disorient
-		{ "#trinket2", "player.state.snare" },    -- Snare.
+      {{ -- PvP Trinket
+            { "#trinket2", "player.state.fear" }, -- Fear.
+            { "#trinket2", "player.state.stun" },    -- Stun.
+            { "#trinket2", "player.state.root" },    -- Root.
+            { "#trinket2", "player.state.horror" },    -- Horrify.
+            { "#trinket2", "player.state.charm" },    -- Charm.
+            { "#trinket2", "player.state.sleep" },    -- Sleep.
+            { "#trinket2", "player.state.incapacitated" },    -- Incapacitation.
+            { "#trinket2", "player.state.disorient" },    -- Disorient
+            { "#trinket2", "player.state.snare" },    -- Snare.
       }, "toggle.pvp", "player" },
-	  
+      
       -- Defensive Cooldowns
       { "Deterrence", "player.health < 30" },
       { "#Healthstone", "player.health < 45" },
@@ -160,7 +160,7 @@ ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96H
             "toggle.bs",
             "target.range <= 36",
       }, "target.ground" },
-    
+      
       -- Traps at your current mouseover with keybinds.
       { "Explosive Trap", "modifier.lcontrol", "mouse.ground" },
       { "Ice Trap", "modifier.lshift", "mouse.ground" },
@@ -169,69 +169,57 @@ ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96H
       { "Binding Shot", { "modifier.lalt", "talent(2,1)" }, "mouse.ground" }, 
       
       -- Rotation START
-            { "Black Arrow", "!target.debuff(Black Arrow)", "target" },
-            { "Concussive Shot", {
-                  "toggle.slow",
-                  "target.range < 40",
-                  "!target.debuff(Concussive Shot)",
-            }, "target" }, -- Only if toggled ON!
-			{ "Explosive Shot" },
-            { "A Murder of Crows", "talent(5,1)", "target" },
-	  -- ADVANCED AoE OR NON AoE Function START --			
-			{ "Barrage", {
-					"talent(6,3)",
-					(function() return UnitsAroundUnit('player', 35) >= 3 end),
-			}, "target" },
-			{ "Glaive Toss", "talent(6,1)", "target" },
-			{ "Powershot", {
-				(function() return UnitsAroundUnit('target', 15) >= 3 end),
-				"talent(6,1)",
-				"!player.moving",
-			}, "target" }, -- Powershot!
-            { "Multi-Shot", {
-				(function() return UnitsAroundUnit('player', 35) >= 3 end),
-				"player.buff(Thrill of the Hunt)",
-			}, "target" }, --Multi-Shot if Thrill of the Hunt is up.
-            { "Multi-Shot", {
-				(function() return UnitsAroundUnit('player', 35) >= 3 end),
-				"!target.debuff(Serpent Sting)",
-			}, "target" }, -- Multi-shot Shot to keep Serpent Sting up.
-            { "Multi-Shot", {
-				(function() return UnitsAroundUnit('player', 35) >= 3 end),
-				"player.focus > 60",
-			}, "target" }, -- Multi-Shot focus dump			
-            { "Arcane Shot", {
-				(function() return UnitsAroundUnit('player', 35) < 3 end),
-				"player.buff(Thrill of the Hunt)",
-			}, "target" }, -- Arcane Shot if Thrill of the Hunt is up.
-            { "Arcane Shot", {
-				(function() return UnitsAroundUnit('player', 35) < 3 end),
-				"!target.debuff(Serpent Sting)",
-			}, "target" }, -- Arcane shot Shot to keep Serpent Sting up.
-            { "Arcane Shot", {
-				(function() return UnitsAroundUnit('player', 35) < 3 end),
-				"player.focus > 60",
-			}, "target" }, -- Arcane Shot focus dump	
-	  -- ADVANCED AoE OR NON AoE Function STOP --	
-
-            { "Cobra Shot", "player.focus < 60" }, -- Cobra Shot if player focus is lower than 60.
-            { "Focusing Shot", "player.focus < 50", "talent(7,2)" }, -- Focusing Shot if under 50 focus.
-},
-
--- Out of Combat Stuff!
+      { "Black Arrow", "!target.debuff(Black Arrow)", "target" },
+      { "Concussive Shot", {
+            "toggle.slow",
+            "target.range < 40",
+            "!target.debuff(Concussive Shot)",
+      }, "target" }, -- Only if toggled ON!
+      { "Explosive Shot" },
+      { "A Murder of Crows", "talent(5,1)", "target" },
+      -- ADVANCED AoE OR NON AoE Functions START --            
+      { "Barrage", {
+            "talent(6,3)",
+            "target.range <= 38",
+            (function() return UnitsAroundUnit('target', 35) >= 3 end),
+      }, "target" },
+      { "Glaive Toss", "talent(6,1)", "target" },
+      { "Powershot", {                
+            "talent(6,1)",
+            "target.range <= 38",
+            "!player.moving",
+            (function() return UnitsAroundUnit('target', 15) >= 3 end),
+      }, "target" }, -- Powershot!
+      {{
+            { "Multi-Shot", "player.buff(Thrill of the Hunt)" }, --Multi-Shot if Thrill of the Hunt is up.
+            { "Multi-Shot", "!target.debuff(Serpent Sting)" }, -- Multi-shot Shot to keep Serpent Sting up.
+            { "Multi-Shot", "player.focus > 60" }, -- Multi-Shot focus dump    
+         }, (function() return UnitsAroundUnit('target', 8) >= 3 end), "target.range <= 38", "player" },
+      {{            
+            { "Arcane Shot", "player.buff(Thrill of the Hunt)" }, -- Arcane Shot if Thrill of the Hunt is up.
+            { "Arcane Shot", "!target.debuff(Serpent Sting)" }, -- Arcane shot Shot to keep Serpent Sting up.
+            { "Arcane Shot", "player.focus > 60" }, -- Arcane Shot focus dump    
+         }, (function() return UnitsAroundUnit('target', 8) < 3 end), "target.range <= 38", "player" },
+      -- ADVANCED AoE OR NON AoE Functions STOP --    
+      
+      { "Cobra Shot", "player.focus < 60" }, -- Cobra Shot if player focus is lower than 60.
+      { "Focusing Shot", "player.focus < 50", "talent(7,2)" }, -- Focusing Shot if under 50 focus.
+   },
+   
+   -- Out of Combat Stuff!
    {
       { "pause","player.buff(Feign Death)" },
       { "Auto Shot", "modifier.lshift", "target" },
       { "Trap Launcher", "!player.buff(Trap Launcher)" },
-	  {{
-		{ "#Hyper Augment Rune", "!player.buff(Hyper Augmentation)" },
-		{ "#Greater Draenic Agility Flask", {
-			"!player.buff(Whispers of Insanity",
-			"!player.buff(Greater Draenic Agility Flask)",
-		}},
-	  }, "toggle.flasks", "player" },
+      {{
+            { "#Hyper Augment Rune", "!player.buff(Hyper Augmentation)" },
+            { "#Greater Draenic Agility Flask", {
+                  "!player.buff(Whispers of Insanity",
+                  "!player.buff(Greater Draenic Agility Flask)",
+            }},
+      }, "toggle.flasks", "player" },
    },
-
+   
    function()
       ProbablyEngine.toggle.create(
          'pvp',
@@ -258,10 +246,10 @@ ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96H
          'Toggle on to automatically use Binding Shot, and Explosive Trap on the target location, if the enemy gets closer than 15/35 yards.'
       )
       ProbablyEngine.toggle.create(
-            'misdirect',
-            'Interface\\Icons\\ability_hunter_misdirection',
-            'Use Misdirection on Focus target.',
-            'Toggle on to automatically keep Misdirection up on your focus target.'
+         'misdirect',
+         'Interface\\Icons\\ability_hunter_misdirection',
+         'Use Misdirection on Focus target.',
+         'Toggle on to automatically keep Misdirection up on your focus target.'
       )
       ProbablyEngine.toggle.create(
          'slow',
