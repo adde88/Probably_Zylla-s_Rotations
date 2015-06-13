@@ -203,7 +203,7 @@ ProbablyEngine.rotation.register_custom(255, "|cff00FFFFZylla's|r - [|cff00FF96H
       -- ADVANCED AoE OR NON AoE Functions STOP --    
       
       { "Cobra Shot", "player.focus < 60" }, -- Cobra Shot if player focus is lower than 60.
-      { "Focusing Shot", "player.focus < 50", "talent(7,2)" }, -- Focusing Shot if under 50 focus.
+      { "Focusing Shot", "player.focus < 50", "talent(7,2)", "!player.moving" }, -- Focusing Shot if under 50 focus.
    },
    
    -- Out of Combat Stuff!
